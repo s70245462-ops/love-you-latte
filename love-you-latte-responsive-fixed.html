@@ -20,8 +20,8 @@ button,input{font:inherit}
 button{cursor:pointer}
 img{max-width:100%;display:block}
 .container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
-.nav{position:fixed;inset:0 0 auto;z-index:100;padding:20px 0;transition:background .25s ease,padding .25s ease,box-shadow .25s ease}
-.nav.scrolled{background:rgba(247,244,238,.94);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line);padding:13px 0}
+.nav{position:fixed;inset:0 0 auto;z-index:100;padding:calc(20px + env(safe-area-inset-top,0px)) 0 20px;transition:background .25s ease,padding .25s ease,box-shadow .25s ease}
+.nav.scrolled{background:rgba(247,244,238,.94);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line);padding:calc(13px + env(safe-area-inset-top,0px)) 0 13px}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{font-family:"Playfair Display",serif;font-size:clamp(22px,2vw,27px);font-weight:600;letter-spacing:-1px;white-space:nowrap}
 .logo span{color:var(--accent)}
@@ -32,12 +32,12 @@ img{max-width:100%;display:block}
 .nav-order,.hero-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--espresso);color:#fff;padding:12px 20px;border-radius:100px;font-size:12px;font-weight:700;border:1px solid var(--espresso);transition:transform .2s,background .2s}
 .nav-order:hover,.hero-btn:hover{transform:translateY(-2px);background:var(--brown)}
 .menu-toggle{display:none;border:0;background:transparent;color:var(--espresso);font-size:25px;line-height:1;padding:6px}
-.mobile-menu{display:none}
+.mobile-menu{display:none;z-index:100}
 .hero{min-height:760px;display:flex;align-items:center;padding:145px 0 90px;position:relative;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(35px,6vw,85px);align-items:center}
-.eyebrow,.section-kicker,.info-label{ text-transform:uppercase;letter-spacing:3px;font-size:10px;font-weight:700}
+.eyebrow,.section-kicker,.info-label{text-transform:uppercase;letter-spacing:3px;font-size:10px;font-weight:700}
 .eyebrow,.section-kicker{color:var(--accent);margin-bottom:20px}
-.hero h1{font-family:"Playfair Display",serif;font-size:clamp(48px,6.4vw,88px);line-height:1.02;font-weight:500;letter-spacing:clamp(-3px,-.35vw,-5px);margin-bottom:25px}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(48px,6.4vw,88px);line-height:1.02;font-weight:500;letter-spacing:clamp(-5px,-.35vw,-3px);margin-bottom:25px}
 .hero h1 em{font-weight:400;color:var(--accent)}
 .hero p{max-width:430px;color:var(--muted);font-size:15px;margin-bottom:34px}
 .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
@@ -110,8 +110,8 @@ footer{background:#1d1713;color:#fff;padding:55px 0 25px}
 }
 @media (max-width:760px){
  .container{width:min(100% - 32px,1180px)}
- .nav{padding:15px 0}.nav.scrolled{padding:11px 0}.nav-links,.nav-order{display:none}.menu-toggle{display:block}
- .mobile-menu{position:fixed;inset:68px 12px auto;display:flex;flex-direction:column;gap:4px;background:var(--paper);padding:14px;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s}
+ .nav{padding:calc(15px + env(safe-area-inset-top,0px)) 0 15px}.nav.scrolled{padding:calc(11px + env(safe-area-inset-top,0px)) 0 11px}.nav-links,.nav-order{display:none}.menu-toggle{display:block}
+ .mobile-menu{position:fixed;inset:calc(68px + env(safe-area-inset-top,0px)) 12px auto;display:flex;flex-direction:column;gap:4px;background:var(--paper);padding:14px;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.2s}
  .mobile-menu.open{opacity:1;visibility:visible;transform:none}
  .mobile-menu a{padding:14px;border-radius:8px;font-weight:600;font-size:14px}.mobile-menu a:hover{background:var(--soft)}
  .hero{padding:115px 0 70px;min-height:auto}.hero-grid{grid-template-columns:1fr;gap:45px}.hero h1{font-size:clamp(52px,13vw,78px)}.hero-image{height:min(520px,115vw);min-height:350px}.hero-tag{left:15px}
@@ -121,19 +121,20 @@ footer{background:#1d1713;color:#fff;padding:55px 0 25px}
 }
 @media (max-width:430px){
  .container{width:calc(100% - 24px)}.hero-buttons{flex-direction:column;align-items:stretch}.hero-btn{width:100%}.hero-image{min-height:320px}.hero-tag{bottom:15px;left:12px;right:12px;max-width:none}.visit-info{grid-template-columns:1fr;gap:22px}.menu-tabs{gap:7px}.tab{padding:9px 12px}.map-content{padding:22px 18px}
- .mobile-bar{display:flex;position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:10px;right:10px;z-index:90;background:var(--espresso);border-radius:100px;padding:6px;box-shadow:0 10px 30px #0003}.mobile-bar a{flex:1;text-align:center;color:#fff;font-size:11px;padding:11px 4px}.mobile-bar a:last-child{background:var(--accent);border-radius:100px}footer{padding-bottom:90px}
+ .mobile-bar{display:flex;position:fixed;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:10px;right:10px;z-index:90;background:var(--espresso);border-radius:100px;padding:6px;box-shadow:0 10px 30px #0003}.mobile-bar a{flex:1;text-align:center;color:#fff;font-size:11px;padding:11px 4px}.mobile-bar a:last-child{background:var(--accent);border-radius:100px}footer{padding-bottom:90px}
 }
 </style>
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 <header class="nav" id="navbar">
  <div class="container nav-inner">
   <a href="#" class="logo" aria-label="Love You Latte home">Love You <span>Latte</span></a>
   <nav class="nav-links" aria-label="Primary navigation"><a href="#story">Our Story</a><a href="#menu">Menu</a><a href="#visit">Visit</a></nav>
-  <div class="nav-actions"><a class="nav-order" href="https://www.loveyoulatte.cafe/" target="_blank" rel="noopener noreferrer">Order To Go ↗</a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileMenu">☰</button></div>
+  <div class="nav-actions"><a class="nav-order" href="https://www.loveyoulatte.cafe/" target="_blank" rel="noopener noreferrer">Order To Go ↗</a><button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileMenu">☰</button></div>
  </div>
- <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation"><a href="#story">Our Story</a><a href="#menu">Menu</a><a href="#visit">Visit</a><a href="https://www.loveyoulatte.cafe/" target="_blank" rel="noopener noreferrer">Order To Go ↗</a></nav>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation"><a href="#story">Our Story</a><a href="#menu">Menu</a><a href="#visit">Visit</a><a href="https://www.loveyoulatte.cafe/" target="_blank" rel="noopener noreferrer">Order To Go ↗</a></nav>
 <main>
 <section class="hero"><div class="container hero-grid"><div class="reveal"><div class="eyebrow">Brunch · Coffee · Sweet Moments</div><h1>A little<br><em>love</em> in<br>every bite.</h1><p>Brunch favorites, indulgent creations, and seriously good coffee — made for slow mornings and unforgettable cravings in Glendale.</p><div class="hero-buttons"><a href="#menu" class="hero-btn">Explore The Menu ↗</a><a href="#visit" class="hero-btn light">Find Us</a></div></div><div class="hero-visual reveal"><div class="hero-image"></div><div class="hero-tag"><small>Made with intention</small><strong>Your next favorite brunch.</strong></div></div></div></section>
 <div class="marquee">Fresh flavors <span>✦</span> Big brunch energy <span>✦</span> Glendale, California <span>✦</span> Made with love <span>✦</span></div>
@@ -143,7 +144,7 @@ footer{background:#1d1713;color:#fff;padding:55px 0 25px}
 <article class="food-card reveal"><div class="food-img" style="background-image:url('https://images.unsplash.com/photo-1513442542250-854d436a73f2?auto=format&fit=crop&w=900&q=85')"></div><div class="food-content"><span class="badge">Sweet Favorite</span><div class="food-top"><h3 class="food-name">Nutella Crepe</h3><span class="food-price">$18</span></div><p class="food-desc">Strawberries, bananas, Nutella, and powdered sugar — the perfect sweet finish.</p></div></article>
 </div></div></section>
 <section class="story" id="story"><div class="container story-grid"><div class="story-image reveal"></div><div class="reveal"><div class="section-kicker">The Love You Latte feeling</div><h2>Come for<br>the food.<br><em>Stay for the feeling.</em></h2><p>Hot or cold, sweet or savory, for here or to go — Love You Latte is your Glendale spot for generous plates, comforting flavors, and little moments worth slowing down for.</p><div class="story-note">“Every plate should feel like a little celebration.”</div></div></div></section>
-<section class="section" id="menu"><div class="container"><div class="section-head reveal"><div><div class="section-kicker">Something for every craving</div><h2>The full<br>menu.</h2></div><p>From savory brunch classics to decadent French toast and freshly baked pastries.</p></div><div class="menu-tabs" role="tablist" aria-label="Menu categories"><button class="tab active" data-filter="all" role="tab" aria-selected="true">All</button><button class="tab" data-filter="brunch" role="tab" aria-selected="false">Brunch Club</button><button class="tab" data-filter="burrito" role="tab" aria-selected="false">Burritos & Wraps</button><button class="tab" data-filter="toast" role="tab" aria-selected="false">Toasts</button><button class="tab" data-filter="sweet" role="tab" aria-selected="false">Sweet</button><button class="tab" data-filter="pastry" role="tab" aria-selected="false">Pastries</button></div><div class="menu-grid" id="menuGrid">
+<section class="section" id="menu"><div class="container"><div class="section-head reveal"><div><div class="section-kicker">Something for every craving</div><h2>The full<br>menu.</h2></div><p>From savory brunch classics to decadent French toast and freshly baked pastries.</p></div><div class="menu-tabs" role="tablist" aria-label="Menu categories"><button class="tab active" type="button" data-filter="all" role="tab" aria-selected="true">All</button><button class="tab" type="button" data-filter="brunch" role="tab" aria-selected="false">Brunch Club</button><button class="tab" type="button" data-filter="burrito" role="tab" aria-selected="false">Burritos & Wraps</button><button class="tab" type="button" data-filter="toast" role="tab" aria-selected="false">Toasts</button><button class="tab" type="button" data-filter="sweet" role="tab" aria-selected="false">Sweet</button><button class="tab" type="button" data-filter="pastry" role="tab" aria-selected="false">Pastries</button></div><div class="menu-grid" id="menuGrid">
 <div class="menu-item" data-cat="brunch"><div class="menu-item-top"><h3>Wake&Slay</h3><span class="price">$18</span></div><p>Cinnamon French toast brioche, fluffy eggs, crispy bacon, melted cheddar.</p></div>
 <div class="menu-item" data-cat="brunch"><div class="menu-item-top"><h3>McGriddle Sandwich</h3><span class="price">$20</span></div><p>Belgium waffles, scrambled eggs, bacon, cheddar cheese, side salad.</p></div>
 <div class="menu-item" data-cat="brunch"><div class="menu-item-top"><h3>El Jefe Bowl</h3><span class="price">$20</span></div><p>Rice, black beans, pico, corn, cotija, marinated oven-roasted chicken.</p></div>
